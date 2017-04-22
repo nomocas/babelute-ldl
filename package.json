@@ -1,6 +1,6 @@
 {
   "name": "babelute-ldl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "babelute Lexicon Definition DSL",
   "main": "dist/bundles/index.js",
   "module": "dist/bundles/index.mjs",
