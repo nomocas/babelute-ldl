@@ -1,0 +1,46 @@
+	// through DSL definition language
+	lexicon.add( 
+		dl
+		// atoms
+		.atom('tag', 
+			aright
+			.description('a simple tag')
+			.arg('name', aright.isString())
+			.arg('children',  aright.required(false).isArray().items( aright.isBabelute() ))
+		)
+		.atom('attr', 
+			aright.description('tag attribute')
+			.arg('name', aright.isString())
+			.arg('value')
+		) 
+		.atom('on', 
+			aright.description('set tag events listener')
+			.arg('name', aright.isString())
+			.arg('handler', aright.isFunction())
+		)
+
+		// tags
+		.each(['div', 'span'], (name, h) => {
+			return dl.compound(name, 
+				aright.description('html '+ name +' tag')
+				.rest('children', 
+					aright.isArray().items(aright.isBabelute())
+				)
+				.method((...children) => {
+					return h.tag(name, children);
+				})
+			);
+		})
+		// events
+		.each(['click', 'mouseover'], (name, h) => {
+			return dl.compound(name, 
+				aright.description('html '+ name +' event handler')
+				.arg('handler', aright.isFunction())
+				.method((handler) => {
+					return h.on(name, handler);
+				})
+			);
+		})
+	);
+
+	
