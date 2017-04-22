@@ -5,7 +5,6 @@
   "main": "dist/bundles/index.js",
   "module": "dist/bundles/index.mjs",
   "jsnext:main": "dist/bundles/index.mjs",
-
   "scripts": {
     "prebuild": "eslint src test",
     "build": "npm run es5-build && npm run bundles-build && uglifyjs dist/bundles/index.js -m -o dist/bundles/index.min.js",
@@ -17,9 +16,9 @@
     "test": "mocha",
     "karma": "karma start",
     "cover": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/*.js",
-    "prepublish": "npm test"
+    "prepublish": "npm test",
+    "release": "standard-version"
   },
-
   "nyc": {
     "require": [
       "babel-register"
@@ -27,12 +26,10 @@
     "sourceMap": false,
     "instrument": false
   },
-
-  "keywords":[
+  "keywords": [
     "babelute",
     "lexicon"
   ],
-  
   "author": "Gilles Coomans",
   "license": "MIT",
   "dependencies": {
@@ -60,6 +57,7 @@
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-watch": "^3.2.2",
+    "standard-version": "^4.0.0",
     "uglify-js": "^2.7.5"
   }
 }
